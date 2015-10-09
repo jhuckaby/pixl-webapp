@@ -4,6 +4,16 @@ The **pixl-webapp** package is a client-side JavaScript framework, designed to b
 
 It ships with a demo application, which you can see here: [Demo App](http://pixlcore.com/demos/pixl-webapp/demo/)
 
+# Table of Contents
+
+| Document | Description |
+|---------------|-------------|
+| Main Docs | (You're reading them)
+| [OOP Docs](https://github.com/jhuckaby/pixl-webapp/blob/master/docs/oop.md) | Documentation on the object-oriented class generation system.
+| [XML Docs](https://github.com/jhuckaby/pixl-webapp/blob/master/docs/xml.md) | Documentation on the XML parser and serializer class.
+| [Tools Docs](https://github.com/jhuckaby/pixl-webapp/blob/master/docs/tools.md) | Documentation on the tools library (misc utility functions).
+| [Date/Time Docs](https://github.com/jhuckaby/pixl-webapp/blob/master/docs/datetime.md) | Documentation on the date/time utility library.
+
 # Usage
 
 You can use [npm](https://www.npmjs.com/) to install the module:
@@ -520,6 +530,7 @@ Instead of generating hashtag anchor links, you can optionally provide a custom 
 
 ```javascript
 	pagination_link: '$P().tableNavClick'
+```
 
 In this case your custom page `tableNavClick()` method will be called for each table pagination click, and passed the new offset value.
 
