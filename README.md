@@ -90,7 +90,7 @@ This file handles basic dialog display and rendering. See the [Dialogs](#dialogs
 
 ### base.js
 
-This file contains the base application object for your web app.  It's a single, global `app` object that you can extend with your own variables and functions if you like.  See [Main Application](#mainapplication) below for details.
+This file contains the base application object for your web app.  It's a single, global `app` object that you can extend with your own variables and functions if you like.  See [Main Application](#main-application) below for details.
 
 ## HTML Markup
 
@@ -792,7 +792,7 @@ There are a few variants available:
 
 ### Subtitles
 
-Subtitles are designed to be displayed at the top of your page content, usually in conjunction with [Side Tabs](#sidetabs), or just above a [Table](#tables).  They are styled in 16px bold text, with a light gray bottom border that extends the full width of the container.  To use, create a `<div>` and apply CSS class `subtitle`.  Example:
+Subtitles are designed to be displayed at the top of your page content, usually in conjunction with [Side Tabs](#side-tabs), or just above a [Table](#tables).  They are styled in 16px bold text, with a light gray bottom border that extends the full width of the container.  To use, create a `<div>` and apply CSS class `subtitle`.  Example:
 
 ```html
 	<div class="subtitle">New Vegetable</div>
