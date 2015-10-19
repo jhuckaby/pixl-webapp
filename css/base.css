@@ -516,7 +516,7 @@ body {
 
 .tab_widget {
 	float: right;
-	padding:0;
+	padding: 0;
 	height: 27px;
 	line-height: 27px;
 	margin-left: 15px;
@@ -543,10 +543,7 @@ body {
 	padding: 10px;
 	min-height: 400px;
 	overflow: hidden;
-	
 	box-shadow: rgba(0,0,0,0.2) 2px 2px 3px; 
-	-webkit-box-shadow: rgba(0,0,0,0.2) 2px 2px 3px; 
-	-moz-box-shadow: rgba(0,0,0,0.2) 2px 2px 3px;
 }
 
 .main > div {
@@ -593,8 +590,6 @@ fieldset {
 	padding:4px 8px 8px 8px;
 	
 	box-shadow: rgba(0,0,0,0.1) 3px 3px 4px;
-	-webkit-box-shadow: rgba(0,0,0,0.1) 3px 3px 4px; 
-	-moz-box-shadow: rgba(0,0,0,0.1) 3px 3px 4px;
 }
 legend { 
 	padding-left: 5px;
