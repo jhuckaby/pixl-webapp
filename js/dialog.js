@@ -67,34 +67,29 @@ var Dialog = {
 		var y = Math.floor( ((size.height / 2) - (height / 2)) * 0.75 );
 		
 		if ($('#dialog_overlay').length) {
-			$('#dialog_overlay').stop().fadeTo( 500, 0.75 );
-		}
-		else {
-			var overlay = document.createElement('div');
-			overlay.id = 'dialog_overlay';
-			overlay.style.opacity = 0;
-			body.appendChild(overlay);
-			$(overlay).fadeTo( 500, 0.75 ).click(function() {
-				if (!Dialog.clickBlock) Dialog.hide();
-			});
+			$('#dialog_overlay').stop().remove();
 		}
 		
+		var overlay = document.createElement('div');
+		overlay.id = 'dialog_overlay';
+		overlay.style.opacity = 0;
+		body.appendChild(overlay);
+		$(overlay).fadeTo( 500, 0.75 ).click(function() {
+			if (!Dialog.clickBlock) Dialog.hide();
+		});
+		
 		if ($('#dialog_container').length) {
-			$('#dialog_container').stop().css({
-				left: '' + x + 'px',
-				top: '' + y + 'px'
-			}).html(html).fadeIn( 250 );
+			$('#dialog_container').stop().remove();
 		}
-		else {
-			var container = document.createElement('div');
-			container.id = 'dialog_container';
-			container.style.opacity = 0;
-			container.style.left = '' + x + 'px';
-			container.style.top = '' + y + 'px';
-			container.innerHTML = html;
-			body.appendChild(container);
-			$(container).fadeTo( 250, 1.0 );
-		}
+		
+		var container = document.createElement('div');
+		container.id = 'dialog_container';
+		container.style.opacity = 0;
+		container.style.left = '' + x + 'px';
+		container.style.top = '' + y + 'px';
+		container.innerHTML = html;
+		body.appendChild(container);
+		$(container).fadeTo( 250, 1.0 );
 		
 		this.active = true;
 	},

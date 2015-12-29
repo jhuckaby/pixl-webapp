@@ -41,7 +41,7 @@ var app = {
 	},
 	
 	getUserAvatarURL: function() {
-		// get URL to user's avatar using Gravatar service
+		// get URL to user's avatar using Gravatar.com service
 		var size = 0;
 		var email = '';
 		if (arguments.length == 2) {
@@ -52,7 +52,7 @@ var app = {
 			email = this.user.email;
 			size = arguments[0];
 		}
-		return '//en.gravatar.com/avatar/' + hex_md5( email ) + '.jpg?s=' + size + '&d=mm';
+		return '//en.gravatar.com/avatar/' + hex_md5( email.toLowerCase() ) + '.jpg?s=' + size + '&d=mm';
 	},
 	
 	doMyAccount: function() {
@@ -120,6 +120,23 @@ var app = {
 			var page = this.page_manager.find(id);
 			if (page && page.onResize) page.onResize( get_inner_window_size() );
 		}
+		
+		// also handle sending resize events at a 250ms delay
+		// so some pages can perform a more expensive refresh at a slower interval
+		if (!this.resize_timer) {
+			this.resize_timer = setTimeout( this.handleResizeDelay.bind(this), 250 );
+		}
+	},
+	
+	handleResizeDelay: function() {
+		// called 250ms after latest resize event
+		this.resize_timer = null;
+		
+		if (this.page_manager && this.page_manager.current_page_id) {
+			var id = this.page_manager.current_page_id;
+			var page = this.page_manager.find(id);
+			if (page && page.onResizeDelay) page.onResizeDelay( get_inner_window_size() );
+		}
 	},
 	
 	handleUnload: function() {
@@ -134,6 +151,8 @@ var app = {
 	},
 	
 	doError: function(msg, lifetime) {
+		// show an error message at the top of the screen
+		// and hide the progress dialog if applicable
 		this.showMessage( 'error', msg, lifetime );
 		if (this.progress) this.hideProgress();
 		return null;
