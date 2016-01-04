@@ -8,6 +8,7 @@ var app = {
 	secure: !!location.protocol.match(/^https/i),
 	retina: (window.devicePixelRatio > 1),
 	base_api_url: '/api',
+	plain_text_post: false,
 	prefs: {},
 	
 	init: function() {
@@ -153,6 +154,7 @@ var app = {
 	doError: function(msg, lifetime) {
 		// show an error message at the top of the screen
 		// and hide the progress dialog if applicable
+		Debug.trace("ERROR: " + msg);
 		this.showMessage( 'error', msg, lifetime );
 		if (this.progress) this.hideProgress();
 		return null;
@@ -206,7 +208,9 @@ var app = {
 		request: function(url, args, callback, errorCallback) {
 			// send AJAX request to server using jQuery
 			var headers = {};
-			if (app.getPref('session_id')) {
+			
+			// inject session id into headers, unless app is using plain_text_post
+			if (app.getPref('session_id') && !app.plain_text_post) {
 				headers['X-Session-ID'] = app.getPref('session_id');
 			}
 			
@@ -257,13 +261,19 @@ var app = {
 			// send AJAX POST request to server using jQuery
 			var url = app.base_api_url + "/" + cmd;
 			if (!params) params = {};
+			
+			// inject session in into json if submitting as plain text (cors preflight workaround)
+			if (app.getPref('session_id') && app.plain_text_post) {
+				params['session_id'] = app.getPref('session_id');
+			}
+			
 			var json_raw = JSON.stringify(params);
 			Debug.trace( 'api', "Sending HTTP POST to: " + url + ": " + json_raw );
 			
 			this.request(url, {
 				type: "POST",
 				data: json_raw,
-				contentType: 'application/json' // so the server knows what we are sending
+				contentType: app.plain_text_post ? 'text/plain' : 'application/json'
 			}, callback, errorCallback);
 		},
 		
@@ -334,7 +344,7 @@ var app = {
 				title: title
 			};
 		}
-		else {
+		else if (app.progress) {
 			// dialog is active, so update existing elements
 			var now = hires_time_now();
 			var cx = Math.floor( counter * 196 );

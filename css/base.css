@@ -904,6 +904,7 @@ span.color_label {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 }
+span.color_label.blue { background: #5890db; }
 span.color_label.green { background: #44bb44; }
 span.color_label.yellow { background: #bbbb44; }
 span.color_label.red { background: #bb4444; }
