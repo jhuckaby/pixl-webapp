@@ -53,6 +53,13 @@ var app = {
 			email = this.user.email;
 			size = arguments[0];
 		}
+		
+		// user may have custom avatar
+		if (this.user && this.user.avatar) {
+			// convert to protocol-less URL
+			return this.user.avatar.replace(/^\w+\:/, '');
+		}
+		
 		return '//en.gravatar.com/avatar/' + hex_md5( email.toLowerCase() ) + '.jpg?s=' + size + '&d=mm';
 	},
 	
