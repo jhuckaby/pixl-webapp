@@ -2,7 +2,7 @@
 
 The **pixl-webapp** package is a client-side JavaScript framework, designed to be a starting point for a simple web application.  It consists of a number of JavaScript classes, utility functions, and basic CSS elements (header, tabs, dialogs, progress bars, form elements, etc.).  [jQuery](http://jquery.com/) is required for all features to work properly.
 
-It ships with a demo application, which you can see here: [Demo App](http://pixlcore.com/demos/pixl-webapp/demo/)
+It ships with a demo application, which you can see here: [Demo App](http://pixlcore.com/demos/pixl-webapp/demo/index.html)
 
 # Table of Contents
 
