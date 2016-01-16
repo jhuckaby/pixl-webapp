@@ -158,10 +158,6 @@ button {	width: auto; overflow: visible; }
 	html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } 
 }
 
-.clear { clear: both }
-.left { float: left; }
-.right { float: right; }
-
 /* Growl */
 
 #d_growl_wrapper {
