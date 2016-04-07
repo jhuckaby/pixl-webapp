@@ -3,6 +3,24 @@
 /* Lots of content from: http://html5boilerplate.com/ */
 /* Theme colors: #3f7ed5, #5890db, #7cafda, #9ccffa */
 
+/* Lato Font: Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato". Licensed under the SIL Open Font License, Version 1.1. */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'),
+       url('../fonts/lato-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+ */
+       url('../fonts/lato-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'),
+       url('../fonts/lato-v11-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+ */
+       url('../fonts/lato-v11-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -65,8 +83,6 @@ pre, code, kbd, samp { font-family: monospace, sans-serif; }
 body, select, input, textarea { color:#444; }
 
 h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility; }
-
-html { -webkit-font-smoothing: antialiased; }
  
 a:hover, a:active { outline: none; }
 
@@ -271,11 +287,16 @@ div.dialog_subtitle {
 
 .strong { font-weight: bold; }
 
+/* html { -webkit-font-smoothing: antialiased; } */
+
 body {
-	font-family: helvetica, sans-serif;
+	font-family: "Lato", helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	background: #f8f8f8;
+	background: #fff;
+}
+input {
+	font-family: "Lato", helvetica, sans-serif;
 }
 
 .container {
@@ -288,16 +309,13 @@ body {
 
 #d_header {
 	position: relative;
-	margin-top: 0px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	height: 40px;
 	
-	background: #f0f0f0;	
-	background: linear-gradient(to top, #e8e8e8 0%, #f8f8f8 100%);
-	
-	box-shadow: rgba(0,0,0,0.2) 0px 3px 4px;
-	-webkit-box-shadow: rgba(0,0,0,0.2) 0px 3px 4px; 
-	-moz-box-shadow: rgba(0,0,0,0.2) 0px 3px 4px;
+	background: #fff;	
+	/* background: linear-gradient(to top, #e8e8e8 0%, #f8f8f8 100%); */
+	/* box-shadow: rgba(0,0,0,0.1) 0px 1px 1px; */
 }
 
 #d_header_logo {
@@ -377,7 +395,7 @@ body {
 .side_tab_bar {
 	width: 150px;
 	height: 100%;
-	border-right: 1px solid #ccc;
+	border-right: 1px solid #ddd;
 }
 
 .tab {
@@ -391,12 +409,12 @@ body {
 	border-top: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	-moz-border-radius-topleft: 6px;
-	-moz-border-radius-topright: 6px;
-	-webkit-border-top-left-radius: 6px;
-	-webkit-border-top-right-radius: 6px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
 }
 
 .tab.side {
@@ -411,11 +429,11 @@ body {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	
-	border-bottom-left-radius: 6px;
+	border-bottom-left-radius: 4px;
 	border-top-right-radius: 0px;
-	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-topright: 0px;
-	-webkit-border-bottom-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 4px;
 	-webkit-border-top-right-radius: 0px;
 }
 .tab.side.inactive {
@@ -483,9 +501,7 @@ body {
 .tab.active {
 	background: #fff;
 	
-	box-shadow: rgba(0,0,0,0.1) 2px 2px 3px; 
-	-webkit-box-shadow: rgba(0,0,0,0.1) 2px 2px 3px; 
-	-moz-box-shadow: rgba(0,0,0,0.1) 2px 2px 3px;
+	/* box-shadow: rgba(0,0,0,0.1) 2px 2px 3px;  */
 	
 	cursor: default;
 }
@@ -496,10 +512,18 @@ body {
 }
 
 .tab.inactive {
-	background: #e8e8e8;
-	background: linear-gradient(to top, rgba(232, 232, 232, 1.0) 0%, rgba(255, 255, 255, 1.0) 100%);
-		
+	background: #f8f8f8;
+	/* background: linear-gradient(to top, rgba(232, 232, 232, 1.0) 0%, rgba(255, 255, 255, 1.0) 100%); */
+	
 	cursor: pointer;
+	
+	height: 25px;
+	border-bottom: 1px solid #ddd;
+}
+
+.tab.side.inactive {
+	height: 27px;
+	border-bottom: 1px solid #ccc;
 }
 
 .tab.inactive:hover .content {
@@ -539,7 +563,7 @@ body {
 	padding: 10px;
 	min-height: 400px;
 	overflow: hidden;
-	box-shadow: rgba(0,0,0,0.2) 2px 2px 3px; 
+	/* box-shadow: rgba(0,0,0,0.2) 2px 2px 3px;  */
 }
 
 .main > div {
@@ -580,12 +604,13 @@ div.subtitle_widget {
 
 fieldset {
 	background: #f8f8f8;
-	background: linear-gradient(to top, #efefef 0%, #fff 100%);
+	/* background: linear-gradient(to top, #efefef 0%, #fff 100%); */
 		
-	border:1px solid #ccc; 
+	border:1px solid #ddd; 
+	border-radius: 2px;
 	padding:4px 8px 8px 8px;
 	
-	box-shadow: rgba(0,0,0,0.1) 3px 3px 4px;
+	/* box-shadow: rgba(0,0,0,0.1) 3px 3px 4px; */
 }
 legend { 
 	padding-left: 5px;
@@ -617,8 +642,8 @@ legend {
 	
 	border-top: 1px solid #ccc;
 	
-	background: #eee;
-	background: linear-gradient(to top, #ddd 0%, #fff 100%);
+	background: #f8f8f8;
+	/* background: linear-gradient(to top, #ddd 0%, #fff 100%); */
 }
 .data_table tr td {
 	padding-left: 5px;
@@ -626,12 +651,14 @@ legend {
 	padding-top: 4px;
 	padding-bottom: 4px;
 	
-	background: #f8f8f8;
-	background: linear-gradient(to top, #efefef 0%, #fff 100%);
+	border-bottom: 1px solid #eee;
+	
+	background: #fff;
+	/* background: linear-gradient(to top, #efefef 0%, #fff 100%); */
 }
 .data_table tr.highlight td {
 	background: #f8f8ff;
-	background: linear-gradient(to top, #e0e0ff 0%, #fff 100%);
+	/* background: linear-gradient(to top, #e0e0ff 0%, #fff 100%); */
 }
 .data_table.extra_padding tr td {
 	padding-top: 10px;
@@ -657,13 +684,13 @@ div.ellip {
 	height: 18px;
 	padding: 4px 5px 1px 5px;
 	
-	background: #e8e8e8;
-	background: linear-gradient(to top, #e8e8e8 0%, #fff 100%);
-		
+	background: #f8f8f8;
+	/* background: linear-gradient(to top, #e8e8e8 0%, #fff 100%); */
+	
 	border-left: 1px solid #ccc;
 	border-top: 1px solid #ccc;
-	border-right: 1px solid #999;
-	border-bottom: 1px solid #999;
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
 	cursor: pointer;
 	font-size:10pt; font-weight:bold; color:#444;
 	text-shadow: rgba(255, 255, 255, 0.5) 1px 1px;
@@ -671,12 +698,7 @@ div.ellip {
 	color: #444;
 	
 	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	
-	box-shadow: rgba(0,0,0,0.1) 1px 1px 1px, rgba(255,255,255,0.5) -1px -1px 0px; 
-	-webkit-box-shadow: rgba(0,0,0,0.1) 1px 1px 1px, rgba(255,255,255,0.5) -1px -1px 0px; 
-	-moz-box-shadow: rgba(0,0,0,0.1) 1px 1px 1px, rgba(255,255,255,0.5) -1px -1px 0px;
+	/* box-shadow: rgba(0,0,0,0.1) 1px 1px 1px, rgba(255,255,255,0.5) -1px -1px 0px; */
 	
 	user-select: none;
 	-moz-user-select: none;
@@ -703,8 +725,8 @@ div.ellip {
 
 .button.disabled:hover, .button.disabled.hover {
 	color: #444;
-	background: #e8e8e8;
-	background: linear-gradient(to top, #e8e8e8 0%, #fff 100%);
+	background: #f8f8f8;
+	/* background: linear-gradient(to top, #e8e8e8 0%, #fff 100%); */
 }
 
 .button:active, .button.active {
@@ -717,12 +739,10 @@ div.ellip {
 	
 	color: #3f7ed5;
 	
-	box-shadow: rgba(0,0,0,0) 1px 1px 1px; 
-	-webkit-box-shadow: rgba(0,0,0,0) 1px 1px 1px; 
-	-moz-box-shadow: rgba(0,0,0,0) 1px 1px 1px;
+	/* box-shadow: rgba(0,0,0,0) 1px 1px 1px;  */
 	
-	background: #ddd;
-	background: linear-gradient(to top, #ccc 0%, #eee 100%);
+	background: #eee;
+	/* background: linear-gradient(to top, #ccc 0%, #eee 100%); */
 }
 
 .button.disabled:active, .button.disabled.active {
@@ -731,8 +751,8 @@ div.ellip {
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #999;
 	border-bottom: 1px solid #999;
-	background: #e8e8e8;
-	background: linear-gradient(to top, #e8e8e8 0%, #fff 100%);
+	background: #f8f8f8;
+	/* background: linear-gradient(to top, #e8e8e8 0%, #fff 100%); */
 }
 
 /* Menus */
@@ -752,7 +772,8 @@ select.small {
 
 div.message {
 	position: fixed;
-	left: -1px; top: 0;
+	box-sizing: border-box;
+	left: 0px; top: 0;
 	width: 100%;
 	z-index: 10003;
 	cursor: pointer;
@@ -763,7 +784,8 @@ div.message {
 	/* margin-bottom: 10px;
 	margin-left: 10px;
 	margin-right: 10px; */
-	background-image: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+	
+	/* background-image: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); */
 }
 div.message.inline {
 	position: relative;
@@ -780,9 +802,9 @@ div.message.inline > div.message_inner {
 	cursor: default;
 }
 
-div.message.success { color:#0a0; background-color:#bfb; }
-div.message.warning { color:#990; background-color:#ffb; }
-div.message.error	 { color:#c00; background-color:#fdd; }
+div.message.success { color:#0a0; background-color:#cfc; }
+div.message.warning { color:#990; background-color:#ffc; }
+div.message.error	 { color:#c00; background-color:#fee; }
 
 /* div.message.error div.message_inner { background: url(../images/error_24.png) no-repeat 5px center; }
 div.message.warning div.message_inner { background: url(../images/error_24.png) no-repeat 5px center; }
@@ -791,7 +813,7 @@ div.message.success div.message_inner { background: url(../images/check_24.png) 
 /* Footer */
 
 #d_footer {
-	margin: 10px 10px 10px 10px;
+	margin: 7px 0px 10px 0px;
 	font-size:11px; cursor:default; color:#aaa;
 }
 #d_footer a { color: #888; }
@@ -909,7 +931,7 @@ span.color_label.gray { background: #aaaaaa; }
 
 span.color_label.checkbox {
 	cursor: pointer;
-	background: #bbb;
+	background: #ccc;
 	transition: all 0.5s ease;
 	-webkit-transition: all 0.5s ease;
 }
@@ -934,11 +956,15 @@ span.color_label.checkbox.plain {
 	font-weight: normal !important;
 }
 
+.info_value .color_label {
+	padding: 1px 5px 1px 5px;
+}
+
 /* Dialog Stuff */
 
 .dialog_title {
-	background:#eee; 
-	padding:20px; 
+	background:#f8f8f8; 
+	padding:15px 20px 15px 20px; 
 	font-size:18px; 
 	font-weight:bold; 
 	border-left:1px solid #ddd; 
@@ -973,12 +999,17 @@ span.color_label.checkbox.plain {
 	padding:30px;
 }
 
+.dialog_content fieldset {
+	background: #fbfbfb;
+}
+
 .dialog_buttons {
-	background:#f8f8f8; 
+	background:#fff; 
 	padding:15px; 
 	border-left:1px solid #ddd; 
 	border-right:1px solid #ddd; 
 	border-bottom:1px solid #ddd;
+	border-top:1px solid #eee;
 	
 	-webkit-border-top-left-radius: 0px;
 	-webkit-border-top-right-radius: 0px;
@@ -996,9 +1027,9 @@ span.color_label.checkbox.plain {
 }
 
 .dialog_shadow {
-	box-shadow: rgba(0,0,0,0.2) 5px 5px 8px;
+	/* box-shadow: rgba(0,0,0,0.2) 5px 5px 8px;
 	-webkit-box-shadow: rgba(0,0,0,0.2) 5px 5px 8px;
-	-moz-box-shadow: rgba(0,0,0,0.2) 5px 5px 8px;
+	-moz-box-shadow: rgba(0,0,0,0.2) 5px 5px 8px; */
 }
 
 .dialog_simple {
@@ -1065,8 +1096,8 @@ div.progress_bar_container {
 	position: relative;
 	height: 18px;
 	border-radius: 10px;
-	background-color: #ddd;
-	box-shadow: inset 2px 2px 4px #999;
+	background-color: #eee;
+	/* box-shadow: inset 2px 2px 4px #999; */
 	overflow: hidden;
 }
 div.progress_bar_container.indeterminate {

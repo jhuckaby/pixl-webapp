@@ -372,9 +372,9 @@ var app = {
 	showDialog: function(title, inner_html, buttons_html) {
 		// show dialog using our own look & feel
 		var html = '';
-		html += '<div class="dialog_title shade-light dialog_shadow">' + title + '</div>';
-		html += '<div class="dialog_content dialog_shadow">' + inner_html + '</div>';
-		html += '<div class="dialog_buttons dialog_shadow">' + buttons_html + '</div>';
+		html += '<div class="dialog_title">' + title + '</div>';
+		html += '<div class="dialog_content">' + inner_html + '</div>';
+		html += '<div class="dialog_buttons">' + buttons_html + '</div>';
 		Dialog.showAuto( "", html );
 	},
 	
