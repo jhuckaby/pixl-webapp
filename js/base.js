@@ -485,10 +485,24 @@ function $P(id) {
 };
 
 var Debug = {
+	backlog: [],
+	
+	dump: function() {
+		// dump backlog to console
+		for (var idx = 0, len = this.backlog.length; idx < len; idx++) {
+			console.log( this.backlog[idx] );
+		}
+	},
+	
 	trace: function(cat, msg) {
+		// trace one line to console, or store in backlog
 		if (arguments.length == 1) { msg = cat; cat = 'debug'; }
 		if (window.console && console.log && window.config && config.debug) {
 			console.log( cat + ': ' + msg );
+		}
+		else {
+			this.backlog.push( hires_time_now() + ': ' + cat + ': ' + msg );
+			if (this.backlog.length > 100) this.backlog.shift();
 		}
 	}
 };

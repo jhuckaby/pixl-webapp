@@ -445,6 +445,7 @@ Class.create( 'PageManager', {
 			assert(Page[ page_list[idx].ID ], "Page class not found: Page." + page_list[idx].ID);
 			
 			var page = new Page[ page_list[idx].ID ]( page_list[idx] );
+			page.args = {};
 			page.onInit();
 			this.pages.push(page);
 			
