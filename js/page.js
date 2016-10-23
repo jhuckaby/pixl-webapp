@@ -380,15 +380,16 @@ Class.create( 'Page', {
 		html += '<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr>';
 		
 		html += '<td align="left" width="33%">';
-		html += rows.length + ' ' + pluralize(data_type, rows.length) + '';
+		if (cols.headerLeft) html += cols.headerLeft;
+		else html += rows.length + ' ' + pluralize(data_type, rows.length) + '';
 		html += '</td>';
 		
 		html += '<td align="center" width="34%">';
-			html += '&nbsp;';
+			html += cols.headerCenter || '&nbsp;';
 		html += '</td>';
 		
 		html += '<td align="right" width="33%">';
-			html += 'Page 1 of 1';
+			html += cols.headerRight || 'Page 1 of 1';
 		html += '</td>';
 		
 		html += '</tr></table>';
@@ -396,11 +397,12 @@ Class.create( 'Page', {
 		
 		html += '<div style="margin-top:5px;">';
 		html += '<table class="data_table" width="100%">';
-		html += '<tr><th>' + cols.join('</th><th>').replace(/\s+/g, '&nbsp;') + '</th></tr>';
+		html += '<tr><th style="white-space:nowrap;">' + cols.join('</th><th style="white-space:nowrap;">') + '</th></tr>';
 		
 		for (var idx = 0, len = rows.length; idx < len; idx++) {
 			var row = rows[idx];
 			var tds = callback(row, idx);
+			if (tds.insertAbove) html += tds.insertAbove;
 			html += '<tr' + (tds.className ? (' class="'+tds.className+'"') : '') + '>';
 			html += '<td>' + tds.join('</td><td>') + '</td>';
 			html += '</tr>';
