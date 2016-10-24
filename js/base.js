@@ -266,7 +266,9 @@ var app = {
 		
 		post: function(cmd, params, callback, errorCallback) {
 			// send AJAX POST request to server using jQuery
-			var url = app.base_api_url + "/" + cmd;
+			var url = cmd;
+			if (!url.match(/^(\w+\:\/\/|\/)/)) url = app.base_api_url + "/" + cmd;
+			
 			if (!params) params = {};
 			
 			// inject session in into json if submitting as plain text (cors preflight workaround)
@@ -286,9 +288,13 @@ var app = {
 		
 		get: function(cmd, query, callback, errorCallback) {
 			// send AJAX GET request to server using jQuery
+			var url = cmd;
+			if (!url.match(/^(\w+\:\/\/|\/)/)) url = app.base_api_url + "/" + cmd;
+			
 			if (!query) query = {};
 			query.cachebust = app.cacheBust;
-			var url = app.base_api_url + "/" + cmd + compose_query_string(query);
+			url += compose_query_string(query);
+			
 			Debug.trace( 'api', "Sending HTTP GET to: " + url );
 			
 			this.request(url, {
