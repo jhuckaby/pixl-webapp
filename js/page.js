@@ -271,11 +271,11 @@ Class.create( 'Page', {
 		var current_page = Math.floor( results.offset / results.limit ) + 1;
 		
 		html += '<td align="left" width="33%">';
-		html += results.total + ' ' + pluralize(data_type, results.total) + ' found';
+		html += commify(results.total) + ' ' + pluralize(data_type, results.total) + ' found';
 		html += '</td>';
 		
 		html += '<td align="center" width="34%">';
-		if (num_pages > 1) html += 'Page ' + current_page + ' of ' + num_pages;
+		if (num_pages > 1) html += 'Page ' + commify(current_page) + ' of ' + commify(num_pages);
 		else html += '&nbsp;';
 		html += '</td>';
 		
@@ -311,16 +311,16 @@ Class.create( 'Page', {
 
 			for (var idx = start_page; idx <= end_page; idx++) {
 				if (idx == current_page) {
-					html += '<b>' + idx + '</b>';
+					html += '<b>' + commify(idx) + '</b>';
 				}
 				else {
 					if (cpl) {
-						html += '<span class="link" onMouseUp="'+cpl+'('+Math.floor((idx - 1) * results.limit)+')">'+idx+'</span>';
+						html += '<span class="link" onMouseUp="'+cpl+'('+Math.floor((idx - 1) * results.limit)+')">' + commify(idx) + '</span>';
 					}
 					else {
 						html += '<a href="#' + this.ID + compose_query_string(merge_objects(this.args, {
 							offset: (idx - 1) * results.limit
-						})) + '">'+idx+'</a>';
+						})) + '">' + commify(idx) + '</a>';
 					}
 				}
 				html += '&nbsp;';
@@ -381,7 +381,7 @@ Class.create( 'Page', {
 		
 		html += '<td align="left" width="33%">';
 		if (cols.headerLeft) html += cols.headerLeft;
-		else html += rows.length + ' ' + pluralize(data_type, rows.length) + '';
+		else html += commify(rows.length) + ' ' + pluralize(data_type, rows.length) + '';
 		html += '</td>';
 		
 		html += '<td align="center" width="34%">';
