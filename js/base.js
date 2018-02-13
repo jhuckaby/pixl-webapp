@@ -405,13 +405,35 @@ var app = {
 		buttons_html += '</tr></table></center>';
 		
 		this.showDialog( title, inner_html, buttons_html );
+		
+		// special mode for key capture
+		Dialog.active = 'confirmation';
 	},
 	
 	confirm_click: function(result) {
 		// user clicked OK or Cancel in confirmation dialog, fire callback
 		// caller MUST deal with Dialog.hide() if result is true
-		this.confirm_callback(result);
-		if (!result) Dialog.hide();
+		if (this.confirm_callback) {
+			this.confirm_callback(result);
+			if (!result) Dialog.hide();
+		}
+	},
+	
+	confirm_key: function(event) {
+		// handle keydown with active confirmation dialog
+		if (Dialog.active !== 'confirmation') return;
+		if ((event.keyCode != 13) && (event.keyCode != 27)) return;
+		
+		// skip enter check if textarea is active
+		if (document.activeElement && (event.keyCode == 13)) {
+			if ($(document.activeElement).prop('type') == 'textarea') return;
+		}
+		
+		event.stopPropagation();
+		event.preventDefault();
+		
+		if (event.keyCode == 13) this.confirm_click(true);
+		else if (event.keyCode == 27) this.confirm_click(false);
 	},
 	
 	get_base_url: function() {
@@ -516,6 +538,10 @@ var Debug = {
 $(document).ready(function() {
 	app.init();
 });
+
+window.addEventListener( "keydown", function(event) {
+	app.confirm_key(event);
+}, false );
 
 window.addEventListener( "resize", function() {
 	app.handleResize();
