@@ -269,6 +269,12 @@ div.dialog_subtitle {
 	font-weight: bold;
 }
 
+div.confirm_container {
+	width: 450px; 
+	font-size: 13px; 
+	color: #444;
+}
+
 /* Misc */
 
 .loading {

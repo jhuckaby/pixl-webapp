@@ -395,7 +395,7 @@ var app = {
 		this.confirm_callback = callback;
 		
 		var inner_html = "";
-		inner_html += '<div style="width:450px; font-size:13px; color:#444;">'+html+'</div>';
+		inner_html += '<div class="confirm_container">'+html+'</div>';
 		
 		var buttons_html = "";
 		buttons_html += '<center><table><tr>';
