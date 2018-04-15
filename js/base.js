@@ -227,7 +227,7 @@ var app = {
 			args.timeout = 1000 * 10; // 10 seconds
 			args.headers = headers;
 			
-			$.ajax(args).success( function(text) {
+			$.ajax(args).done( function(text) {
 				// parse JSON and fire callback
 				Debug.trace( 'api', "Received response from server: " + text );
 				var resp = null;
@@ -250,7 +250,7 @@ var app = {
 					else if (callback) callback(resp);
 				}
 			} )
-			.error( function(xhr, status, err) {
+			.fail( function(xhr, status, err) {
 				// XHR or HTTP error
 				var code = xhr.status || 500;
 				var desc = err.toString() || status.toString();
