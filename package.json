@@ -1,6 +1,6 @@
 {
   "name": "pixl-webapp",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "A client-side JavaScript framework, designed to be a base for web applications.",
   "author": "Joseph Huckaby <jhuckaby@gmail.com>",
   "homepage": "https://github.com/jhuckaby/pixl-webapp",
