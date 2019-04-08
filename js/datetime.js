@@ -2,28 +2,30 @@
 // Copyright (c) 2004 - 2015 Joseph Huckaby
 // Released under the MIT License
 
-window._months = [
+var _months = [
 	[ 1, 'January' ], [ 2, 'February' ], [ 3, 'March' ], [ 4, 'April' ],
 	[ 5, 'May' ], [ 6, 'June' ], [ 7, 'July' ], [ 8, 'August' ],
 	[ 9, 'September' ], [ 10, 'October' ], [ 11, 'November' ],
 	[ 12, 'December' ]
 ];
-window._days = [
+var _days = [
 	[1,1], [2,2], [3,3], [4,4], [5,5], [6,6], [7,7], [8,8], [9,9], [10,10],
 	[11,11], [12,12], [13,13], [14,14], [15,15], [16,16], [17,17], [18,18], 
 	[19,19], [20,20], [21,21], [22,22], [23,23], [24,24], [25,25], [26,26],
 	[27,27], [28,28], [29,29], [30,30], [31,31]
 ];
 
-window._short_month_names = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 
+var _short_month_names = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 
 	'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec' ];
 
-window._day_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 
+var _day_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 
 	'Thursday', 'Friday', 'Saturday'];
+	
+var _short_day_names = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-window._number_suffixes = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
+var _number_suffixes = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 
-window._hour_names = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
+var _hour_names = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
 
 function time_now() {
 	// return the Epoch seconds for like right now
@@ -35,6 +37,16 @@ function hires_time_now() {
 	// return the Epoch seconds for like right now
 	var now = new Date();
 	return ( now.getTime() / 1000 );
+}
+
+function format_date(thingy, template) {
+	// format date using get_date_args
+	// e.g. '[yyyy]/[mm]/[dd]' or '[dddd], [mmmm] [mday], [yyyy]' or '[hour12]:[mi] [ampm]'
+	if (!thingy) return false;
+	var dargs = thingy.yyyy_mm_dd ? thingy : get_date_args(thingy);
+	return template.replace(/\[(\w+)\]/g, function(m_all, m_g1) {
+		return (m_g1 in dargs) ? dargs[m_g1] : '';
+	});
 }
 
 function get_date_args(thingy) {
@@ -72,9 +84,16 @@ function get_date_args(thingy) {
 		if (!args.hour12) args.hour12 = 12;
 	}
 	
+	args.AMPM = args.ampm.toUpperCase();
 	args.yyyy_mm_dd = args.yyyy + '/' + args.mm + '/' + args.dd;
 	args.hh_mi_ss = args.hh + ':' + args.mi + ':' + args.ss;
 	args.tz = 'GMT' + (args.offset > 0 ? '+' : '') + args.offset;
+	
+	// add formatted month and weekdays
+	args.mmm = _short_month_names[ args.mon - 1 ];
+	args.mmmm = _months[ args.mon - 1] ? _months[ args.mon - 1][1] : '';
+	args.ddd = _short_day_names[ args.wday ];
+	args.dddd = _day_names[ args.wday ];
 	
 	return args;
 }

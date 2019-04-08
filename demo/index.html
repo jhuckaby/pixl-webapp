@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Loading...</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/base.css">
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -21,9 +21,11 @@
 			<div id="d_header_title" class="left"><strong>My Application</strong></div>
 			<div id="d_header_user_container" style="right">
 				<!-- User login info here -->
-				<div id="d_header_divider" class="right" style="margin-right:0;"></div>
-				<div class="header_option logout right" onMouseUp="app.doUserLogout()"><i class="fa fa-power-off fa-lg">&nbsp;&nbsp;</i>Logout</div>
-				<div id="d_header_divider" class="right"></div>
+				<div class="header_divider right" style="margin-right:0;"></div>
+				<div class="header_option logout right" onMouseUp="app.doUserLogout()"><i class="fa fa-power-off fa-lg">&nbsp;</i>Logout</div>
+				<div class="header_divider right"></div>
+				<div id="d_theme_ctrl" class="header_option right" onMouseUp="app.toggleTheme()" title="Toggle Light/Dark Theme"></div>
+				<div class="header_divider right"></div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -48,7 +50,7 @@
 		<!-- Footer -->
 		<div id="d_footer">
 			<div class="left">
-				MyApp &copy; 2016 Me. Released under the MIT License.
+				MyApp &copy; 2016 - 2019 Me. Released under the MIT License.
 			</div>
 			<div id="d_footer_version" class="right">
 				
@@ -58,7 +60,7 @@
 		
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 	<!-- BUILD: COMBINE_SCRIPT_START -->
 	<script src="../js/md5.js"></script>

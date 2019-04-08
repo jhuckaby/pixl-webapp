@@ -438,6 +438,39 @@ var app = {
 	
 	get_base_url: function() {
 		return app.proto + location.hostname + '/';
+	},
+	
+	setTheme: function(theme) {
+		// toggle light/dark theme
+		if (theme == 'dark') {
+			$('body').addClass('dark');
+			$('#d_theme_ctrl').html( '<i class="fa fa-moon-o fa-lg">&nbsp;</i>Dark' );
+			this.setPref('theme', 'dark');
+		}
+		else {
+			$('body').removeClass('dark');
+			$('#d_theme_ctrl').html( '<i class="fa fa-lightbulb-o fa-lg">&nbsp;</i>Light' );
+			this.setPref('theme', 'light');
+		}
+		
+		if (this.onThemeChange) this.onThemeChange(theme);
+	},
+	
+	initTheme: function() {
+		// set theme to user's preference
+		if (!this.getPref('theme')) {
+			// brand new user: try to guess theme using media query
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				this.setPref('theme', 'dark');
+			}
+		}
+		this.setTheme( this.getPref('theme') || 'light' );
+	},
+	
+	toggleTheme: function() {
+		// toggle light/dark theme
+		if (this.getPref('theme') == 'dark') this.setTheme('light');
+		else this.setTheme('dark');
 	}
 	
 }; // app object

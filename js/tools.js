@@ -155,11 +155,19 @@ function get_text_from_seconds(sec, abbrev, no_secondary) {
 				
 				if (day > 29) {
 					var month = parseInt(day / 30, 10);
-					day = day % 30; 
 					s_text = "day"; 
-					s_amt = day; 
+					s_amt = day % 30; 
 					p_text = abbrev ? "mon" : "month"; 
 					p_amt = month;
+					
+					if (day >= 365) {
+						var year = parseInt(day / 365, 10);
+						month = month % 12; 
+						s_text = abbrev ? "mon" : "month"; 
+						s_amt = month; 
+						p_text = abbrev ? "yr" : "year"; 
+						p_amt = year;
+					} // day>=365
 				} // day>29
 			} // hour>23
 		} // min>59
@@ -454,3 +462,78 @@ function escape_regexp(text) {
 	return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
 
+function setPath(target, path, value) {
+	// set path using dir/slash/syntax or dot.path.syntax
+	// preserve dots and slashes if escaped
+	var parts = path.replace(/\\\./g, '__PXDOT__').replace(/\\\//g, '__PXSLASH__').split(/[\.\/]/).map( function(elem) {
+		return elem.replace(/__PXDOT__/g, '.').replace(/__PXSLASH__/g, '/');
+	} );
+	
+	var key = parts.pop();
+	
+	// traverse path
+	while (parts.length) {
+		var part = parts.shift();
+		if (part) {
+			if (!(part in target)) {
+				// auto-create nodes
+				target[part] = {};
+			}
+			if (typeof(target[part]) != 'object') {
+				// path runs into non-object
+				return false;
+			}
+			target = target[part];
+		}
+	}
+	
+	target[key] = value;
+	return true;
+};
+
+function getPath(target, path) {
+	// get path using dir/slash/syntax or dot.path.syntax
+	// preserve dots and slashes if escaped
+	var parts = path.replace(/\\\./g, '__PXDOT__').replace(/\\\//g, '__PXSLASH__').split(/[\.\/]/).map( function(elem) {
+		return elem.replace(/__PXDOT__/g, '.').replace(/__PXSLASH__/g, '/');
+	} );
+	
+	var key = parts.pop();
+	
+	// traverse path
+	while (parts.length) {
+		var part = parts.shift();
+		if (part) {
+			if (typeof(target[part]) != 'object') {
+				// path runs into non-object
+				return undefined;
+			}
+			target = target[part];
+		}
+	}
+	
+	return target[key];
+};
+
+function substitute(text, args, fatal) {
+	// perform simple [placeholder] substitution using supplied
+	// args object and return transformed text
+	var self = this;
+	var result = true;
+	var value = '';
+	if (typeof(text) == 'undefined') text = '';
+	text = '' + text;
+	if (!args) args = {};
+	
+	text = text.replace(/\[([^\]]+)\]/g, function(m_all, name) {
+		value = getPath(args, name);
+		if (value === undefined) {
+			result = false;
+			return m_all;
+		}
+		else return value;
+	} );
+	
+	if (!result && fatal) return null;
+	else return text;
+};

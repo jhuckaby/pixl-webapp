@@ -30,6 +30,7 @@ app.extend({
 	// init() is called on page load
 	init: function() {
 		// initialize application
+		this.initTheme();
 		
 		// pop version into footer
 		$('#d_footer_version').html( "Version " + config.Version || 0 );

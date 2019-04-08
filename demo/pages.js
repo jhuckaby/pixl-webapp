@@ -230,7 +230,7 @@ Class.subclass( Page, "Page.MoreDemos", {
 		
 		// sort by title ascending
 		this.vegetables = vegetables.sort( function(a, b) {
-			return (b.title < a.title) ? 1 : -1;
+			return (b.name < a.name) ? 1 : -1;
 		} );
 		
 		var offset = args.offset || 0;
@@ -253,12 +253,12 @@ Class.subclass( Page, "Page.MoreDemos", {
 				
 				var tds = [
 					'<div class="td_big"><span class="link" onMouseUp="$P().editVeg('+idx+')">' + veg.name + '</span></div>',
-					veg.color,
+					'<span class="color_label ' + veg.color.toLowerCase() + '">' + veg.color + '</span>',
 					veg.size,
 					commify( veg.quantity ),
 					veg.price,
 					get_short_date_time( veg.created ),
-					get_short_date_time( veg.created ),
+					get_short_date_time( veg.created + 86400 ),
 					actions.join(' | ')
 				];
 				return tds;
@@ -299,15 +299,15 @@ Class.subclass( Page, "Page.MoreDemos", {
 
 window.vegetables = [
 	
-	{ name: 'Celery', color: 'Green', size: '1ft', quantity: 450, price: '$2.75', created: 1442984544 },
-	{ name: 'Beets', color: 'Purple', size: '4in', quantity: 30, price: '$3.50', created: 1442380043 },
-	{ name: 'Lettuce', color: 'Green', size: '1ft', quantity: 1000, price: '$2.50', created: 1442264863 },
-	{ name: 'Carrots', color: 'Orange', size: '8in', quantity: 60, price: '$4.00', created: 1442084869 },
+	{ name: 'Celery', color: 'Blue', size: '1ft', quantity: 450, price: '$2.75', created: 1442984544 },
+	{ name: 'Beets', color: 'Green', size: '4in', quantity: 30, price: '$3.50', created: 1442380043 },
+	{ name: 'Lettuce', color: 'Yellow', size: '1ft', quantity: 1000, price: '$2.50', created: 1442264863 },
+	{ name: 'Carrots', color: 'Red', size: '8in', quantity: 60, price: '$4.00', created: 1442084869 },
 	{ name: 'Rhubarb', color: 'Purple', size: '2ft', quantity: 190, price: '$3.99', created: 1441724876 },
-	{ name: 'Amaranth', color: 'Green', size: '1in', quantity: 270, price: '$0.50', created: 1441184886 },
-	{ name: 'Arugula', color: 'Green', size: '1ft', quantity: 0, price: '$4.30', created: 1439384893 },
+	{ name: 'Amaranth', color: 'Gray', size: '1in', quantity: 270, price: '$0.50', created: 1441184886 },
+	{ name: 'Arugula', color: 'Blue', size: '1ft', quantity: 0, price: '$4.30', created: 1439384893 },
 	{ name: 'Brussels sprout', color: 'Green', size: '2in', quantity: 910, price: '$9.50', created: 1438934904 },
-	{ name: 'Cabbage', color: 'Green', size: '1ft', quantity: 620, price: '$4.75', created: 1435784914 },
-	{ name: 'Watercress', color: 'White', size: '3in', quantity: 1300, price: '$11.00', created: 1370984920 }
+	{ name: 'Cabbage', color: 'Yellow', size: '1ft', quantity: 620, price: '$4.75', created: 1435784914 },
+	{ name: 'Watercress', color: 'Red', size: '3in', quantity: 1300, price: '$11.00', created: 1370984920 }
 	
 ];
