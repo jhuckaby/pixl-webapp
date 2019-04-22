@@ -308,9 +308,10 @@ function str_value(str) {
 }
 
 function pluralize(word, num) {
-	// Pluralize a word using English language rules.
+	// Pluralize a word using simplified English language rules.
 	if (num != 1) {
 		if (word.match(/[^e]y$/)) return word.replace(/y$/, '') + 'ies';
+		else if (word.match(/s$/)) return word + 'es'; // processes
 		else return word + 's';
 	}
 	else return word;
