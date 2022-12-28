@@ -726,7 +726,6 @@ function isa_hash(arg) {
 
 function isa_array(arg) {
 	// determine if arg is an array or is array-like
-	if (typeof(arg) == 'array') return true;
 	return( !!arg && (typeof(arg) == 'object') && (typeof(arg.length) != 'undefined') );
 }
 
