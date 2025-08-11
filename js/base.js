@@ -187,6 +187,7 @@ var app = {
 		// show success, warning or error message
 		// Dialog.hide();
 		var icon = '';
+		msg = escape_text_field_value(msg); // escape any html chars
 		switch (type) {
 			case 'success': icon = 'check-circle'; break;
 			case 'warning': icon = 'exclamation-circle'; break;
